@@ -1,0 +1,28 @@
+@model UrlHealthMonitor.Models.MonitoredUrl
+
+<h2>Add URL</h2>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label>Name</label>
+        <input asp-for="Name" />
+    </div>
+
+    <div>
+        <label>URL</label>
+        <input asp-for="Url" />
+    </div>
+
+    <div>
+        <label>Interval</label>
+        <select asp-for="IntervalSeconds">
+            <option value="30">30 seconds</option>
+            <option value="40">40 seconds</option>
+            <option value="50">50 seconds</option>
+        </select>
+    </div>
+
+    <br />
+
+    <button type="submit">Save</button>
+</form>

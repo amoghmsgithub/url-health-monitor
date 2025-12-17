@@ -1,0 +1,30 @@
+@model UrlHealthMonitor.Models.MonitoredUrl
+
+@{
+    ViewData["Title"] = "Delete URL";
+}
+
+<h2>Delete URL</h2>
+
+<div class="alert alert-warning">
+    Are you sure you want to delete this URL?
+</div>
+
+<ul class="list-group mb-3">
+    <li class="list-group-item">
+        <strong>Name:</strong> @Model.Name
+    </li>
+    <li class="list-group-item">
+        <strong>URL:</strong> @Model.Url
+    </li>
+    <li class="list-group-item">
+        <strong>Interval:</strong> @Model.IntervalSeconds seconds
+    </li>
+</ul>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

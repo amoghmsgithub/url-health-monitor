@@ -1,0 +1,33 @@
+@model UrlHealthMonitor.Models.MonitoredUrl
+
+@{
+    ViewData["Title"] = "Edit URL";
+}
+
+<h2>Edit URL</h2>
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">URL</label>
+        <input asp-for="Url" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Interval</label>
+        <select asp-for="IntervalSeconds" class="form-select">
+            <option value="30">30 seconds</option>
+            <option value="40">40 seconds</option>
+            <option value="50">50 seconds</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
