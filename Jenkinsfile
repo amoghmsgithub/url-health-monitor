@@ -7,6 +7,13 @@ pipeline {
 
     stages {
 
+        stage('Clean') {
+            steps {
+                sh 'dotnet clean UrlHealthMonitor.sln'
+                sh 'rm -rf **/bin **/obj || true'
+            }
+        }
+
         stage('Restore') {
             steps {
                 sh 'dotnet restore UrlHealthMonitor.sln'
