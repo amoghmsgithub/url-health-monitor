@@ -21,11 +21,11 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'dotnet test UrlHealthMonitor.sln --no-build --logger "trx;LogFileName=test-results.trx"'
+                sh 'dotnet test UrlHealthMonitor.sln --no-build --logger "junit;LogFilePath=test-results.xml"'
             }
             post {
                 always {
-                    junit '**/*.trx'
+                    junit '**/test-results.xml'
                 }
             }
         }
