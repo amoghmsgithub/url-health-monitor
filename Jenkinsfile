@@ -22,17 +22,17 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'dotnet build UrlHealthMonitor.sln --no-restore'
+                sh 'dotnet build UrlHealthMonitor.sln --no-restore --configuration Release'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'dotnet test UrlHealthMonitor.sln --no-build --logger "junit;LogFilePath=test-results.xml"'
+                sh 'dotnet test UrlHealthMonitor.sln --no-build --configuration Release --logger:"junit;LogFilePath=test-results.xml"'
             }
             post {
                 always {
-                    junit '**/test-results.xml'
+                    junit allowEmptyResults: true, testResults: '**/test-results.xml'
                 }
             }
         }
