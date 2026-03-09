@@ -42,7 +42,8 @@ namespace UrlHealthMonitor.Services
                     isHealthyNow = false;
                 }
 
-                // ✅ ADDED FIX: Update status when it is Unknown or changes
+                bool wasHealthy = url.HealthStatus == "Healthy";
+
                 if (isHealthyNow)
                 {
                     url.HealthStatus = "Healthy";
@@ -50,12 +51,11 @@ namespace UrlHealthMonitor.Services
                 else
                 {
                     url.HealthStatus = "Down";
-                }
 
-                if (url.HealthStatus == "Healthy" && !isHealthyNow)
-                {
-                    url.HealthStatus = "Down";
-                    await _emailService.SendDownAlertAsync(url);
+                    if (wasHealthy)
+                    {
+                        await _emailService.SendDownAlertAsync(url);
+                    }
                 }
 
                 url.LastCheckTime = DateTime.UtcNow;
